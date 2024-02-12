@@ -6,7 +6,7 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:51:54 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/12 10:31:39 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:57:33 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void *check_philo(void *arg);
 int create_control(t_data *data, t_philo *philo);
 // errors.c//
 void print_error_exit(char *error);
+int is_digit(char **argv);
 int check_errors(char **argv);
 int ft_error(int n);
 // data.c//
-int is_digit(char **argv);
 int ft_atoi(char *str);
 int init_mutex(t_data *data);
 int giving_data(t_data *data, char **argv);

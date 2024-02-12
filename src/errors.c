@@ -6,7 +6,7 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:45:10 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/12 10:24:57 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/12 11:11:16 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,32 @@ void print_error_exit(char *error)
 
 int ft_error(int n)
 {
-	if (n == 1)
+	if (n == 1) // TODO: cuando usamos este error
 		return (1);
 	if (n == 2)
 	{
 		printf("Wrong parameters\n");
 		return (2);
+	}
+	return (0);
+}
+
+int is_digit(char **argv)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+				return (2);
+			j++;
+		}
+		i++;
 	}
 	return (0);
 }

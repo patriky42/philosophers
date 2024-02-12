@@ -6,7 +6,7 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:54:18 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/12 10:24:52 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:50:58 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 
 	if (5 == argc || 6 == argc)
 	{
+		printf("acabas de entrar aqui");
 		if (check_errors(argv) != 0)
 			return (-1);
 		data = (t_data *)malloc(sizeof(t_data)); // TODO: no protegemos este Malloc?
@@ -37,6 +38,7 @@ int main(int argc, char **argv)
 	{
 		/*error_exit("Wrong input:\n" G "✅ ./philo 5 800 200 200 [7] ✅\n"
 				   "      t_die t_eat t_sleep [meals_limit]" RST);*/
+		printf("aqui estas");
 		ft_error(2);
 		return (2);
 	}
