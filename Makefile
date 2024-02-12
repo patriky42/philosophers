@@ -6,14 +6,14 @@
 #    By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 12:15:51 by pabastid          #+#    #+#              #
-#    Updated: 2024/02/12 10:25:48 by pabastid         ###   ########.fr        #
+#    Updated: 2024/02/12 10:39:23 by pabastid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME := philo
 SRC :=  src/errors.c src/data.c src/time_control.c\
-src/free_and_destroy.c src/create.c src/printing.c src/create.c src/check_and_control_all.c\
+src/free_and_destroy.c src/printing.c src/create.c src/check_and_control_all.c\
 main.c 
 OBJ := $(SRC:.c=.o)
 DEP := $(SRC:.c=.d)CFLAGS := -Wall -Werror -Wextra -g -MMD -fsanitize='address,undefined'
