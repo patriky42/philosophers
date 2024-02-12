@@ -6,7 +6,7 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:51:54 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/10 12:12:05 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:31:39 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,17 @@ typedef struct s_philo
 	t_data *data;
 } t_philo;
 
-// parsing.c//
-int is_digit(char **argv);
-int check_errors(char **argv);
+// check_and_control_all.c//
+void check_if_everyone_has_eaten(t_philo *philo);
+int check_if_someone_is_dead(t_philo *philo, int i);
+void *check_philo(void *arg);
+int create_control(t_data *data, t_philo *philo);
 // errors.c//
 void print_error_exit(char *error);
+int check_errors(char **argv);
 int ft_error(int n);
 // data.c//
+int is_digit(char **argv);
 int ft_atoi(char *str);
 int init_mutex(t_data *data);
 int giving_data(t_data *data, char **argv);
@@ -64,6 +68,8 @@ int free_and_destroy(t_data *data, t_philo *philo, int out);
 t_philo *create_philo(t_data *data);
 void *if_only_one_philo(void *argv);
 int create_one_philo(t_data *data, t_philo *philo);
+void *routine(void *arg);
+int ft_create_thread(t_data *data, t_philo *philos);
 // printing //
 void printing(int n, t_philo *philo);
 void continue_printing(int n, t_philo *philo);

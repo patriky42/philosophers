@@ -6,7 +6,7 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:54:18 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/10 12:22:47 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:24:52 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ int main(int argc, char **argv)
 		philo = create_philo(data);
 		if (!philo)
 			return (free_and_destroy(data, philo, -1));
-		if (ft_atoi(argv[1]) == 1)
+		if (ft_atoi(argv[1]) == 1) // recogemos aqui el caso de que haya un solo philo
 			create_one_philo(data, philo);
+		else
+			ft_create_thread(data, philo);
+		free_and_destroy(data, philo, 0);
 	}
 	else
 	{
@@ -39,40 +42,3 @@ int main(int argc, char **argv)
 	}
 	return (0);
 }
-
-/*NAME := philo
-SRC := src/parsing.c src/errors.c src/data.c src/time_control.c\
-src/free_and_destroy.c src/create.c src/printing.c\
-main.c
-OBJ := $(SRC:.c=.o)
-DEP := $(SRC:.c=.d)
-CC := gcc
-CFLAGS := -Wall -Werror -Wextra -g -MMD -pthread
-RM := rm -rf
-LIBS := -lpthread
-HEADER := inc/
-INCLUDE := -I $(HEADER)
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-
-all: $(OBJ)
-	$(MAKE) $(NAME)
-
--include $(DEP)
-$(NAME): $(OBJ) Makefile
-	$(CC) $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME)
-
-clean:
-	$(RM) $(OBJ)
-	$(RM) $(DEP)
-
-fclean:
-	$(MAKE) clean
-	$(RM) $(NAME)
-
-re:
-	$(MAKE) fclean
-	$(MAKE) all
-
-.PHONY: all clean fclean re bonus*/

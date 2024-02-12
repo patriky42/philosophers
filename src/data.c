@@ -6,11 +6,31 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 10:45:17 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/10 12:12:15 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:24:56 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int is_digit(char **argv)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+				return (2);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 int ft_atoi(char *str)
 {
