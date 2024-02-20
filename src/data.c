@@ -6,17 +6,17 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 10:45:17 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/12 10:57:31 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:43:46 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
-	int num;
-	int sign;
-	int i;
+	int	num;
+	int	sign;
+	int	i;
 
 	num = 0;
 	sign = 1;
@@ -35,9 +35,9 @@ int ft_atoi(char *str)
 	return (num * sign);
 }
 
-int init_mutex(t_data *data)
+int	init_mutex(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->philos_num)
@@ -54,7 +54,7 @@ int init_mutex(t_data *data)
 }
 
 /*Esta funccion da a cada philo la info de comer, ddrmir, etc...*/
-int giving_data(t_data *data, char **argv)
+int	giving_data(t_data *data, char **argv)
 {
 	data->someone_died = 0;
 	data->start_time = get_time();
@@ -66,7 +66,8 @@ int giving_data(t_data *data, char **argv)
 		data->must_eat = ft_atoi(argv[5]);
 	else
 		data->must_eat = -1;
-	data->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philos_num);
+	data->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* data->philos_num);
 	if (!data->fork)
 		return (-1);
 	return (init_mutex(data));

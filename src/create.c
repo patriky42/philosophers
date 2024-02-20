@@ -6,16 +6,16 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:18:50 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/12 10:24:50 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:46:44 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-t_philo *create_philo(t_data *data)
+t_philo	*create_philo(t_data *data)
 {
-	t_philo *philo;
-	int count;
+	t_philo	*philo;
+	int		count;
 
 	count = 0;
 	philo = (t_philo *)malloc(sizeof(t_philo) * data->philos_num);
@@ -35,22 +35,9 @@ t_philo *create_philo(t_data *data)
 	return (philo);
 }
 
-void *if_only_one_philo(void *argv)
+int	create_one_philo(t_data *data, t_philo *philo)
 {
-	t_philo *philo;
-
-	philo = (t_philo *)argv;
-	pthread_mutex_lock(&philo->data->fork[philo->fork_right]);
-	printing(2, philo);
-	ft_sleep(philo->data->time_to_die);
-	printf(BRED "%lld Philo has died 💀\n" RESET,
-		   (get_time() - philo->data->start_time));
-	return (NULL);
-}
-
-int create_one_philo(t_data *data, t_philo *philo)
-{
-	pthread_t the_philo;
+	pthread_t	the_philo;
 
 	if (pthread_create(&the_philo, NULL, &if_only_one_philo, philo) != 0)
 	{
@@ -61,7 +48,7 @@ int create_one_philo(t_data *data, t_philo *philo)
 	return (0);
 }
 
-static void is_eating(t_philo *philo)
+static void	is_eating(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->fork[philo->fork_left]);
 	printing(1, philo);
@@ -77,9 +64,9 @@ static void is_eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->start);
 }
 
-void *routine(void *arg)
+void	*routine(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	if (philo->num_philo % 2 == 0)
@@ -93,19 +80,18 @@ void *routine(void *arg)
 		ft_sleep(philo->data->time_sleep);
 		printing(5, philo);
 		if (philo->data->must_eat)
-			if (philo->data->must_eat ==
-				philo->n_times_has_eat)
-				break;
+			if (philo->data->must_eat == philo->n_times_has_eat)
+				break ;
 		pthread_mutex_lock(&philo->data->start);
 	}
 	pthread_mutex_unlock(&philo->data->start);
 	return (NULL);
 }
 
-int ft_create_thread(t_data *data, t_philo *philos)
+int	ft_create_thread(t_data *data, t_philo *philos)
 {
-	pthread_t *threads;
-	int count_threads;
+	pthread_t	*threads;
+	int			count_threads;
 
 	count_threads = 0;
 	threads = (pthread_t *)malloc(sizeof(pthread_t) * data->philos_num);
@@ -115,7 +101,7 @@ int ft_create_thread(t_data *data, t_philo *philos)
 	while (data->philos_num > count_threads)
 	{
 		if (pthread_create(&threads[count_threads], NULL, &routine,
-						   &philos[count_threads]) != 0)
+				&philos[count_threads]) != 0)
 			return (free_and_destroy(data, philos, -1));
 		count_threads++;
 	}

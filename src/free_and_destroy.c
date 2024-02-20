@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_detroy.c                                  :+:      :+:    :+:   */
+/*   free_and_destroy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 10:55:35 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/10 10:56:50 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:43:51 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int free_and_destroy(t_data *data, t_philo *philo, int out)
+int	free_and_destroy(t_data *data, t_philo *philo, int out)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (philo)

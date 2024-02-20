@@ -6,21 +6,21 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:45:10 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/12 11:11:16 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:13:32 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void print_error_exit(char *error)
+void	print_error_exit(char *error)
 {
 	printf("%s\n", error);
 	exit(EXIT_FAILURE);
 }
 
-int ft_error(int n)
+int	ft_error(int n)
 {
-	if (n == 1) // TODO: cuando usamos este error
+	if (n == 1)
 		return (1);
 	if (n == 2)
 	{
@@ -30,10 +30,10 @@ int ft_error(int n)
 	return (0);
 }
 
-int is_digit(char **argv)
+int	is_digit(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (argv[i])
@@ -50,9 +50,9 @@ int is_digit(char **argv)
 	return (0);
 }
 
-int check_errors(char **argv)
+int	check_errors(char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (argv[i])

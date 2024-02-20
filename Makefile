@@ -6,21 +6,23 @@
 #    By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 12:15:51 by pabastid          #+#    #+#              #
-#    Updated: 2024/02/12 10:39:23 by pabastid         ###   ########.fr        #
+#    Updated: 2024/02/20 17:40:21 by pabastid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME := philo
-SRC :=  src/errors.c src/data.c src/time_control.c\
-src/free_and_destroy.c src/printing.c src/create.c src/check_and_control_all.c\
-main.c 
-OBJ := $(SRC:.c=.o)
-DEP := $(SRC:.c=.d)CFLAGS := -Wall -Werror -Wextra -g -MMD -fsanitize='address,undefined'
+SRC := errors.c data.c time_control.c free_and_destroy.c \
+				printing.c create.c check_and_control_all.c main.c 
+SRC_DIR := src/
+BUILD_DIR := .build/
+# OBJ := $(SRC:.c=.o)
+# DEP := $(SRC:.c=.d)
+OBJ := $(addprefix $(BUILD_DIR), $(SRC:.c=.o))
+DEP := $(addprefix $(BUILD_DIR), $(SRC:.c=.d))
 CC := gcc
-CFLAGS := -Wall -Werror -Wextra -g -MMD -pthread
+CFLAGS := -Wall -Werror -Wextra -g -MMD -pthread -fsanitize=thread
 RM := rm -rf
-LIBS := -lpthread 
+LIBS := -lpthread
 HEADER := inc/
 INCLUDE := -I $(HEADER)
 
@@ -44,14 +46,12 @@ $(BUILD_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-all: $(OBJ)
-	@$(MAKE) $(NAME)
+all: $(OBJ) $(NAME)
 
 $(LIBS):
 	@$(MAKE) -C libftprintf
 
--include $(DEP)
-$(NAME): $(LIBS) $(OBJ) Makefile
+$(NAME): $(LIBS) $(OBJ)
 	@$(CC) $(CFLAGS) $(LIBPATH) $(OBJ) -o $(NAME)
 	@echo "$(COLOR_BOLD)$(COLOR_GREEN)... 🤩 philosophers compiled  ... $(COLOR_RESET)"
 
@@ -59,12 +59,12 @@ clean:
 	$(RM) $(OBJ)
 	$(RM) $(DEP)
 
-fclean:
-	$(MAKE) clean
+fclean: clean
+	$(RM) $(BUILD_DIR)
 	$(RM) $(NAME)
 
-re:
-	$(MAKE) fclean
-	$(MAKE) all
+re: fclean all
 
 .PHONY: all clean fclean re bonus
+
+-include $(DEP)

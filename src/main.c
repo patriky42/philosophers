@@ -6,29 +6,30 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:54:18 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/12 10:50:58 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:09:28 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data *data;
-	t_philo *philo;
+	t_data	*data;
+	t_philo	*philo;
 
 	if (5 == argc || 6 == argc)
 	{
-		printf("acabas de entrar aqui");
 		if (check_errors(argv) != 0)
 			return (-1);
-		data = (t_data *)malloc(sizeof(t_data)); // TODO: no protegemos este Malloc?
+		data = (t_data *)malloc(sizeof(t_data));
+		// TODO: no protegemos este Malloc?
 		if (giving_data(data, argv) != 0)
 			return (free_and_destroy(data, NULL, -1));
 		philo = create_philo(data);
 		if (!philo)
 			return (free_and_destroy(data, philo, -1));
-		if (ft_atoi(argv[1]) == 1) // recogemos aqui el caso de que haya un solo philo
+		if (ft_atoi(argv[1]) == 1)
+			// recogemos aqui el caso de que haya un solo philo
 			create_one_philo(data, philo);
 		else
 			ft_create_thread(data, philo);
@@ -36,9 +37,6 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		/*error_exit("Wrong input:\n" G "✅ ./philo 5 800 200 200 [7] ✅\n"
-				   "      t_die t_eat t_sleep [meals_limit]" RST);*/
-		printf("aqui estas");
 		ft_error(2);
 		return (2);
 	}
