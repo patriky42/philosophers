@@ -6,7 +6,7 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:51:54 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/21 12:37:44 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:42:32 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void				check_if_everyone_has_eaten(t_philo *philo);
 int					check_if_someone_is_dead(t_philo *philo, int i);
 void				*check_philo(void *arg);
 int					create_control(t_data *data, t_philo *philo);
-void				*if_only_one_philo(void *argv);
 // errors.c//
 void				print_error_exit(char *error);
 int					is_digit(char **argv);
@@ -69,6 +68,7 @@ void				*ft_calloc(size_t count, size_t size);
 void				*ft_memset(void *b, int c, size_t len);
 int					ft_atoi(char *str);
 // create.c //
+void				*if_only_one_philo(void *argv);
 t_philo				*create_philo(t_data *data);
 int					create_one_philo(t_data *data, t_philo *philo);
 void				*routine(void *arg);
