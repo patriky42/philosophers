@@ -6,7 +6,7 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:11:36 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/20 18:18:00 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:45:46 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*check_philo(void *arg)
 
 	philo = (t_philo *)arg;
 	while (philo->data->someone_died == 0)
-		// meter mutex cada vez que marco como que ha comido
+	// meter mutex cada vez que marco como que ha comido
 	{
 		i = 0;
 		while (i < philo->data->philos_num)
@@ -84,11 +84,16 @@ void	*if_only_one_philo(void *argv)
 {
 	t_philo	*philo;
 
-	philo = (t_philo *)argv;
+	philo = (t_philo *)argv;                                  
+		// TODO: que valor le d aqui
 	pthread_mutex_lock(&philo->data->fork[philo->fork_right]);
-	printing(2, philo);
-	ft_sleep(philo->data->time_to_die);
-	printf(BRED "%lld Philo has died 💀\n" RESET, (get_time()
+		// TODO: porque hace lock del fork dccho solamente
+	printing(2, philo);                                       
+		// TODO: de donde saca el int n = 2?
+	ft_sleep(philo->data->time_to_die);                       
+		// TODO: porque lo pone a dormir seguro
+	printf(BRED "%lld Philo has died 💀\n" RESET,
+			(get_time() // TODO: cuando printea esto?
 			- philo->data->start_time));
 	return (NULL);
 }

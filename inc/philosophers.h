@@ -6,7 +6,7 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:51:54 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/20 14:09:30 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:37:44 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ long long			get_time(void);
 void				ft_sleep(long long time);
 // free_and_destroy.c //
 int					free_and_destroy(t_data *data, t_philo *philo, int out);
+void				*ft_calloc(size_t count, size_t size);
+void				*ft_memset(void *b, int c, size_t len);
+int					ft_atoi(char *str);
 // create.c //
 t_philo				*create_philo(t_data *data);
 int					create_one_philo(t_data *data, t_philo *philo);

@@ -6,40 +6,51 @@
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:18:50 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/20 13:46:44 by pabastid         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:37:51 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+// TODO: no debeeria en esta funcion crear los pthreads de cada philo?
 t_philo	*create_philo(t_data *data)
 {
 	t_philo	*philo;
-	int		count;
+	int		i;
 
-	count = 0;
-	philo = (t_philo *)malloc(sizeof(t_philo) * data->philos_num);
+	i = 0;
+	philo = ft_calloc((data->philos_num), sizeof(t_philo));
 	if (!philo)
-		return (NULL);
-	while (count < data->philos_num)
+		exit(1);
+	while (i < data->philos_num)
 	{
-		philo[count].num_philo = count + 1;
-		philo[count].fork_left = count;
-		philo[count].fork_right = count + 1;
-		if (count + 1 == data->philos_num)
-			philo[count].fork_right = 0;
-		philo[count].data = data;
-		philo[count].last_eat = get_time();
-		count++;
+		philo[i].num_philo = i + 1;
+		philo[i].fork_left = i;
+		philo[i].fork_right = i + 1;
+		if (i + 1 == data->philos_num)
+			philo[i].fork_right = 0; // TODO: esto no lo entiendo
+		philo[i].data = data;
+		philo[i].last_eat = get_time();
+		i++;
 	}
 	return (philo);
 }
+/*
+	int				num_philo;
+	int				fork_left;
+	int				fork_right;
+	int				n_times_has_eat;
+						//TODO: no se inicializa en esta funccion???
+	long long		last_eat;
+	t_data			*data;
+*/
 
 int	create_one_philo(t_data *data, t_philo *philo)
 {
 	pthread_t	the_philo;
 
 	if (pthread_create(&the_philo, NULL, &if_only_one_philo, philo) != 0)
+	// TODO: ver la funcion if_only_one_ohilo
 	{
 		printf("Can't create the philo\n");
 		return (free_and_destroy(data, philo, -1));

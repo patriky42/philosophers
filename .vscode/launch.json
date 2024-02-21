@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/pabastid/Desktop/philosophers",
-      "program": "/Users/pabastid/Desktop/philosophers/build/Debug/outDebug"
+      "cwd": "/Users/pabastid/Desktop/philosophers/src",
+      "program": "/Users/pabastid/Desktop/philosophers/src/build/Debug/outDebug"
     }
   ]
 }
