@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 10:48:36 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/20 13:43:57 by pabastid         ###   ########.fr       */
+/*   Created: 2024/02/27 14:01:23 by pabastid          #+#    #+#             */
+/*   Updated: 2024/02/27 14:01:29 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ long long	get_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
+/*tengo que comprobar que funciona correctamente para valores altos*/
 void	ft_sleep(long long time)
 {
 	long long	start;

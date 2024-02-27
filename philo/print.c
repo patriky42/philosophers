@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printing.c                                         :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 11:26:25 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/21 14:27:35 by pabastid         ###   ########.fr       */
+/*   Created: 2024/02/27 14:00:17 by pabastid          #+#    #+#             */
+/*   Updated: 2024/02/27 16:37:15 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,20 @@
 void	printing(int n, t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->print);
-	if (philo->data->someone_died == 1)
+	if (n == 1 && someone_died(philo) == 0)
 	{
-		pthread_mutex_unlock(&philo->data->print);
-		return ;
+		printf("%lld %d has taken left fork 🍴 %d\n", (get_time()
+				- philo->data->start_time), philo->num_philo, philo->fork_left);
 	}
-	if (n == 1)
+	else if (n == 2 && someone_died(philo) == 0)
 	{
-		printf("%lld philo:%d has taken left fork 🍴 Left fork->%d\n",
-			(get_time() - philo->data->start_time), philo->num_philo,
-			philo->fork_left);
-	}
-	else if (n == 2)
-	{
-		printf("%lld philo:%d has taken right fork 🍴 Right fork->%d \n",
-			(get_time() - philo->data->start_time), philo->num_philo,
+		printf("%lld %d has taken right fork 🍴 %d \n", (get_time()
+				- philo->data->start_time), philo->num_philo,
 			philo->fork_right);
 	}
-	else if (n == 3)
+	else if (n == 3 && someone_died(philo) == 0)
 	{
-		printf(YEL "%lld philo:%d is eating 🥗\n" RESET, (get_time()
+		printf(YEL "%lld %d is eating 🥗\n" RESET, (get_time()
 				- philo->data->start_time), philo->num_philo);
 	}
 	continue_printing(n, philo);
@@ -42,19 +36,14 @@ void	printing(int n, t_philo *philo)
 
 void	continue_printing(int n, t_philo *philo)
 {
-	if (philo->data->someone_died == 1)
+	if (n == 4 && someone_died(philo) == 0)
 	{
-		pthread_mutex_unlock(&philo->data->print);
-		return ;
-	}
-	if (n == 4)
-	{
-		printf(BLU "%lld philo:%d is sleeping 💤\n" RESET, (get_time()
+		printf(BLU "%lld %d is sleeping 💤\n" RESET, (get_time()
 				- philo->data->start_time), philo->num_philo);
 	}
-	else if (n == 5)
+	else if (n == 5 && someone_died(philo) == 0)
 	{
-		printf(CYN "%lld philo:%d is thinking 💭\n" RESET, (get_time()
+		printf(CYN "%lld %d is thinking 💭\n" RESET, (get_time()
 				- philo->data->start_time), philo->num_philo);
 	}
 	else if (n == 6)

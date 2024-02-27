@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 09:45:10 by pabastid          #+#    #+#             */
-/*   Updated: 2024/02/20 14:13:32 by pabastid         ###   ########.fr       */
+/*   Created: 2024/02/27 13:57:57 by pabastid          #+#    #+#             */
+/*   Updated: 2024/02/27 13:58:08 by pabastid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-void	print_error_exit(char *error)
-{
-	printf("%s\n", error);
-	exit(EXIT_FAILURE);
-}
 
 int	ft_error(int n)
 {
@@ -30,42 +24,47 @@ int	ft_error(int n)
 	return (0);
 }
 
-int	is_digit(char **argv)
+int	check_errors(int ac, char **av)
 {
 	int	i;
-	int	j;
 
 	i = 1;
-	while (argv[i])
+	if (ac < 5 || ac > 6)
 	{
-		j = 0;
-		while (argv[i][j])
+		ft_error(2);
+		return (2);
+	}
+	while (av[i])
+	{
+		if (av[i][0] == '0' && !av[i][1])
 		{
-			if (argv[i][j] < '0' || argv[i][j] > '9')
-				return (2);
-			j++;
+			ft_error(2);
+			return (2);
+		}
+		if (is_digit(av) != 0)
+		{
+			ft_error(2);
+			return (2);
 		}
 		i++;
 	}
 	return (0);
 }
 
-int	check_errors(char **argv)
+int	is_digit(char **av)
 {
 	int	i;
+	int	j;
 
 	i = 1;
-	while (argv[i])
+	while (av[i])
 	{
-		if (argv[i][0] == '0' && !argv[i][1])
+		j = 0;
+		while (av[i][j])
 		{
-			ft_error(2);
-			return (2);
-		}
-		if (is_digit(argv) != 0)
-		{
-			ft_error(2);
-			return (2);
+			if (av[i][j] < '0' || av[i][j] > '9')
+				return (2);
+			j++;
 		}
 		i++;
 	}

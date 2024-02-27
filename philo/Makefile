@@ -6,17 +6,15 @@
 #    By: pabastid <pabastid@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 12:15:51 by pabastid          #+#    #+#              #
-#    Updated: 2024/02/20 17:40:21 by pabastid         ###   ########.fr        #
+#    Updated: 2024/02/27 14:19:02 by pabastid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := philo
-SRC := errors.c data.c time_control.c free_and_destroy.c \
-				printing.c create.c check_and_control_all.c main.c 
-SRC_DIR := src/
+SRC := main.c create.c utils.c prueba.c check_error.c data_philo.c \
+time_control.c print.c free_and_destroy.c
+SRC_DIR := ./
 BUILD_DIR := .build/
-# OBJ := $(SRC:.c=.o)
-# DEP := $(SRC:.c=.d)
 OBJ := $(addprefix $(BUILD_DIR), $(SRC:.c=.o))
 DEP := $(addprefix $(BUILD_DIR), $(SRC:.c=.d))
 CC := gcc
@@ -49,7 +47,7 @@ $(BUILD_DIR)%.o: $(SRC_DIR)%.c
 all: $(OBJ) $(NAME)
 
 $(LIBS):
-	@$(MAKE) -C libftprintf
+	@$(MAKE) -C 
 
 $(NAME): $(LIBS) $(OBJ)
 	@$(CC) $(CFLAGS) $(LIBPATH) $(OBJ) -o $(NAME)
